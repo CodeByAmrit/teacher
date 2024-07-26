@@ -1,0 +1,11 @@
+# Exported from Render on 2024-07-26T10:10:16Z
+services:
+- type: web
+  name: teacher
+  runtime: node
+  repo: https://github.com/CodeByAmrit/teacher
+  plan: free
+  region: oregon
+  buildCommand: npm install
+  startCommand: node index.js
+version: "1"
