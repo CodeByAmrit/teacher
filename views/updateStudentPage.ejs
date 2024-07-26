@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #bb86fc;
+        }
+
+        form {
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            height: fit-content;
+            margin: 40px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #bb86fc;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #333;
+            color: #ffffff;
+        }
+
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/student/<%= student._id %>" method="post">
+        <h1>Update Student</h1>
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="<%= student.first_name %>">
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="<%= student.last_name %>">
+
+        <label for="roll_no">Roll Number:</label>
+        <input type="number" id="roll_no" name="roll_no" value="<%= student.roll_no %>">
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" value="<%= student.state %>">
+
+        <label for="district">District:</label>
+        <input type="text" id="district" name="district" value="<%= student.district %>">
+
+        <label for="house_no">House Number:</label>
+        <input type="text" id="house_no" name="house_no" value="<%= student.house_no %>">
+
+        <label for="semester">Semester:</label>
+        <input type="text" id="semester" name="semester" value="<%= student.semester %>">
+
+        <label for="group">Group:</label>
+        <input type="text" id="group" name="group" value="<%= student.group %>">
+
+        <label for="add_type">Address Type:</label>
+        <input type="text" id="add_type" name="add_type" value="<%= student.add_type %>">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= student.email %>">
+
+        <label for="student_phone">Student Phone:</label>
+        <input type="text" id="student_phone" name="student_phone" value="<%= student.student_phone %>">
+
+        <label for="parent_phone">Parent Phone:</label>
+        <input type="text" id="parent_phone" name="parent_phone" value="<%= student.parent_phone %>">
+
+        <button type="submit">Update</button>
+    </form>
+    <form action="/student/delete/<%= student._id %>" method="post">
+        <p text-align="center">Delete Student</p>
+        <button type="submit">Delete</button>
+    </form>
+</body>
+
+</html>

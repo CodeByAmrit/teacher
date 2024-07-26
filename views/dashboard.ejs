@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icons/teacher.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/dashboard.css">
+
+    <title>Teacher Dashboard</title>
+    <script>
+        function convertToUpperCase(inputId) {
+            // Get the input element by its ID
+            var input = document.getElementsByName("input");
+
+            // Convert the input value to uppercase
+            input.value = input.value.toUpperCase();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="back-gradient">
+        <!-- <img src="image/bigC.svg" alt="backCircle" style="position: absolute; top: 0; left: 0; height: inherit; width: 130vw; background-size: cover;"> -->
+        <!-- left Side Navigation  -->
+        <div class="left-nav">
+            <div class="site-logo">
+                <span style="font-size: 30px;">SMS</span>
+                <span style="color: rgba(64, 50, 187, 0.849);  font-size: 30px;">.com
+                </span>
+                <a href="javascript:void(0)" id="btn-student"
+                    onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+                    <div class="add-btn">
+                        <p> Add student</p>
+                    </div>
+                </a>
+            </div>
+            <div class="menu-group ">
+                <ul>
+                    <div class="div1 active">
+                        <li><a href="#">Dashboard</a></li>
+                    </div>
+                    <div class="div1">
+                        <li><a href="#">Index</a></li>
+                    </div>
+                    <div class="div1">
+                        <li><a href="#">Students</a></li>
+                    </div>
+                    <div class="div1">
+                        <li><a href="#">Syllabus</a></li>
+                    </div>
+                    <div class="div1">
+                        <li><a href="#">Materials</a></li>
+                    </div>
+
+                </ul>
+            </div>
+            <div class="user-group">
+                <div class="user-logo" style="display: flex; align-items: center;">
+                    <a href="/profile.html"><img id="profileImage" src="icons/Group_9.png" alt="logo" width="50px"></a>
+                    <p style="margin-left: 10px;">
+                        <%= user.first_name+" " +user.last_name %><br> Teacher
+                    </p>
+
+                </div>
+
+
+
+                <a href=" /logout" style="list-style: none; color: white; text-decoration: none;">
+                            <div class="logout-btn">
+                                <p>Logout</p>
+                            </div>
+                            </a>
+                </div>
+            </div>
+
+            <!--  right div  -->
+            <div class="white">
+
+
+                <div class="top-group">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search by name or email">
+                        <button onclick="searchStudent()">Search</button>
+                    </div>
+
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th>SR
+                                <th>First Name
+                                <th>Last Name
+                                <th>District
+                                <th>Email
+                                <th>Actions
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <% students.forEach((student, index)=> { %>
+                                <tr>
+                                    <td style="width: 30px;">
+                                        <%= index + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= student.first_name %>
+                                    </td>
+                                    <td>
+                                        <%= student.last_name %>
+                                    </td>
+                                    <td>
+                                        <%= student.district %>
+                                    </td>
+                                    <td>
+                                        <%= student.email %>
+                                    </td>
+                                    <td>
+                                        <a href="/student/<%= student._id %>" class="tooltip">
+                                            <img src="/icons/edit.png" alt="edit" width="20px">
+                                            <span class="tooltiptext">Edit Student</span></a>
+
+                                    </td>
+
+                                </tr>
+
+                                <% }); %>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+
+
+
+
+            <!-- -------------------ADD Student Section---------------- -->
+
+            <div id="fade" class="blur-background">
+                <div id="light" class="white_content">
+                    <form action="/" method="post">
+
+                        <a cross href="javascript:void(0)"
+                            onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img
+                                src="icons/delete.png" alt="close-logo" height="15px" width="15px"
+                                class="close-logo"></a>
+
+                        <div class="top-heading">
+                            <p>STUDENT DETAILS</p>
+                        </div>
+                        <div class="container">
+                            <div class="genedu cont">
+                                <div class="general">
+                                    <h3>General Information</h3>
+                                    <div class="elements">
+                                        <label for="text" required>First Name *</label>
+                                        <input type="text" name="first_name">
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text">Last Name</label>
+                                        <input type="text" name="last_name">
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text" required>Roll No. *</label>
+                                        <input type="number" name="roll_no">
+                                    </div>
+                                </div>
+                                <div class="education">
+                                    <h3>Education Information</h3>
+                                    <div class="elements">
+                                        <label for="text" required>Semester</label>
+                                        <input type="text" name="semester">
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text">Group</label>
+                                        <input type="text" name="group">
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text" required>Addmission<BR>Entry Type *</label>
+                                        <input type="text" name="add_type">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="locon cont">
+                                <div class="location">
+                                    <h3>Location Information</h3>
+                                    <div class="elements">
+                                        <label for="text" required>State *</label>
+                                        <select id="state" name="state">
+                                            <% stateList.states.forEach(state=> { %>
+                                                <option value="<%= state.state %>">
+                                                    <%= state.state %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text">District *</label>
+                                        <select id="district" name="district">
+                                            <% stateList.states[0].districts.forEach(district=> { %>
+                                                <option value="<%= district %>">
+                                                    <%= district %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text" required>Village / H No *</label>
+                                        <input type="text" name="house_no">
+                                    </div>
+                                </div>
+                                <div class="contact">
+                                    <h3>Contact Information</h3>
+                                    <div class="elements">
+                                        <label for="text" required>Email ID *</label>
+                                        <input type="email" name="email">
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text">Student<BR>Phone No *</label>
+                                        <input type="Number" name="student_phone">
+                                    </div>
+                                    <div class="elements">
+                                        <label for="text" required>Parents<BR>Phone No *</label>
+                                        <input type="Number" name="parent_phone">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btnContainer">
+                            <input type="submit" value="Add Student">
+                            <input type="reset" value="Clear">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- ---------------------DONE------------------------- -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                fetch('/user/profile')
+                    .then(response => response.json())
+                    .then(data => {
+                        const profileImage = document.getElementById('profileImage');
+
+
+                        // Update the profile image source
+                        if (data.profilePicture) {
+                            profileImage.src = data.profilePicture;
+                        }
+
+
+                    })
+                    .catch(error => {
+                        console.error('Error fetching user profile:', error);
+                    });
+            });
+
+            function searchStudent() {
+                const input = document.getElementById('searchInput').value.toLowerCase();
+                const tableBody = document.getElementById('studentTableBody');
+                const rows = tableBody.getElementsByTagName('tr');
+
+                for (let i = 0; i < rows.length; i++) {
+                    const firstName = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+                    const email = rows[i].getElementsByTagName('td')[4].textContent.toLowerCase();
+                    if (firstName.includes(input) || email.includes(input)) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+        </script>
+        <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
+</body>
+
+</html>
